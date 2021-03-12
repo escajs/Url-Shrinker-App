@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Url Shortener</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+<h1 class="center-align">Url Shortener</h1>
+<div class="container">
+	<form method="POST" action="/shortening">
+	<div class="row">
+		<div class="col s12">
+			<input required autocomplete="off" type="url" name="longUrl" placeholder="Type Your Link . . ."/>	
+		</div>
+		<div class="col s12">
+			<h3 class="center-align"><button type="submit" class="btn btn-large">Shrink</button></h3>
+		</div>
+	</div>
+	</form>
+	<div class="tableSet">
+	  <table>
+        <thead>
+          <tr>
+              <th>Long Url</th>
+              <th>Short Url</th>
+              <th>Clicks</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% shortLong.forEach(urls => { %>
+            <tr>
+        <td><a href="<%= urls['_longURL'] %>" target="_blank"><%= urls['_longURL'] %></a></td>
+        <td><a href="/<%= urls['_shortUrl'] %>" target="_blank">https://urls-shrinker.herokuapp.com/<%= urls['_shortUrl'] %></a></td>
+         <td><%= urls['_ClicksCount']%></td>
+              </tr>
+            <% })%>
+        </tbody>
+      </table>
+	</div>
+</div>
+</body>
+</html>
